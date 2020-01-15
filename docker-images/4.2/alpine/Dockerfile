@@ -4,9 +4,9 @@
 #
 #
 
-FROM        alpine:3.8 AS base
+FROM        alpine:3.11 AS base
 
-RUN     apk  add --no-cache --update libgcc libstdc++ ca-certificates libcrypto1.0 libssl1.0 libgomp expat git
+RUN     apk  add --no-cache --update libgcc libstdc++ ca-certificates libcrypto1.1 libssl1.1 libgomp expat git
 
 
 FROM        base AS build
@@ -313,7 +313,7 @@ RUN \
         rm -rf ${DIR}
 
 RUN \
-	DIR=/tmp/aom && \
+        DIR=/tmp/aom && \
         git clone --branch ${AOM_VERSION} --depth 1 https://aomedia.googlesource.com/aom ${DIR} ; \
         cd ${DIR} ; \
         rm -rf CMakeCache.txt CMakeFiles ; \
